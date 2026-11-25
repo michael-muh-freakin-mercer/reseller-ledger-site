@@ -19,7 +19,7 @@ body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(
 .wrap{max-width:860px;margin:0 auto;padding:0 20px}
 nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-bottom:1px solid var(--line)}
 .logo{font-weight:800;font-size:1.15rem;text-decoration:none;color:var(--slate)}
-.logo span{color:var(--amber)}
+.logo span{color:#B45309}
 .btn{display:inline-block;background:var(--amber);color:#111827;font-weight:700;padding:10px 20px;border-radius:10px;text-decoration:none;font-size:.95rem}
 h1{font-size:2rem;margin:36px 0 6px;letter-spacing:-.01em}
 .sub{color:var(--slate2);margin-bottom:24px}
@@ -57,10 +57,10 @@ footer a{color:var(--slate2)}
 
 <div class="panel">
   <div class="inputs">
-    <div><label>Item sale price ($)</label><input id="price" type="number" min="0" step="0.01" value="35"></div>
-    <div><label>Shipping charged to buyer ($)</label><input id="shipC" type="number" min="0" step="0.01" value="0"></div>
-    <div><label>Your shipping cost ($)</label><input id="shipK" type="number" min="0" step="0.01" value="0"></div>
-    <div><label>Item cost / COGS ($)</label><input id="cogs" type="number" min="0" step="0.01" value="8"></div>
+    <div><label for="price">Item sale price ($)</label><input id="price" type="number" min="0" step="0.01" value="35"></div>
+    <div><label for="shipC">Shipping charged to buyer ($)</label><input id="shipC" type="number" min="0" step="0.01" value="0"></div>
+    <div><label for="shipK">Your shipping cost ($)</label><input id="shipK" type="number" min="0" step="0.01" value="0"></div>
+    <div><label for="cogs">Item cost / COGS ($)</label><input id="cogs" type="number" min="0" step="0.01" value="8"></div>
   </div>
 </div>
 
@@ -125,10 +125,10 @@ function render(){
     </tr>`).join("");
   $("edit").innerHTML = PLATFORMS.map((p,i)=>`
     <div><label>${p.name} — % / fixed / flat / threshold</label>
-    <input data-i="${i}" data-k="pct" type="number" step="0.001" value="${p.pct}">
-    <input data-i="${i}" data-k="fixed" type="number" step="0.01" value="${p.fixed}">
-    <input data-i="${i}" data-k="flat" type="number" step="0.01" value="${p.flat}">
-    <input data-i="${i}" data-k="thr" type="number" step="0.01" value="${p.thr}"></div>`).join("");
+    <input aria-label="${p.name} fee percent" data-i="${i}" data-k="pct" type="number" step="0.001" value="${p.pct}">
+    <input aria-label="${p.name} fixed fee" data-i="${i}" data-k="fixed" type="number" step="0.01" value="${p.fixed}">
+    <input aria-label="${p.name} flat fee under threshold" data-i="${i}" data-k="flat" type="number" step="0.01" value="${p.flat}">
+    <input aria-label="${p.name} threshold" data-i="${i}" data-k="thr" type="number" step="0.01" value="${p.thr}"></div>`).join("");
   $("edit").querySelectorAll("input").forEach(inp=>inp.addEventListener("input", e=>{
     PLATFORMS[+e.target.dataset.i][e.target.dataset.k] = parseFloat(e.target.value)||0;
     renderTableOnly();
