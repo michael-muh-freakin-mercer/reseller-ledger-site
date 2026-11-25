@@ -41,6 +41,8 @@ details{margin-top:14px;font-size:.85rem;color:var(--slate2)}
 .cta{background:var(--slate);color:#E5E7EB;border-radius:14px;padding:26px;text-align:center;margin:28px 0}
 .cta h2{color:#fff;font-size:1.4rem;margin-bottom:8px}
 .cta p{color:#9CA3AF;max-width:520px;margin:0 auto 16px;font-size:.95rem}
+.tblwrap{overflow-x:auto}
+.tblwrap table{min-width:560px}
 footer{border-top:1px solid var(--line);padding:24px 0;color:#4B5563;font-size:.85rem;text-align:center}
 footer a{color:var(--slate2)}
 </style>
@@ -65,10 +67,10 @@ footer a{color:var(--slate2)}
 </div>
 
 <div class="panel">
-  <table id="tbl">
+  <div class="tblwrap"><table id="tbl">
     <thead><tr><th>Platform</th><th class="num">Fee</th><th class="num">You keep (payout)</th><th class="num">Net profit</th><th class="num">Effective %</th></tr></thead>
     <tbody></tbody>
-  </table>
+  </table></div>
   <details>
     <summary>Edit rates</summary>
     <div class="editgrid" id="edit"></div>
