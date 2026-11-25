@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Reseller Fee Calculator — eBay vs Poshmark vs Mercari vs Depop &amp; more</title>
+<meta name="description" content="Free calculator: enter a sale price and see what you actually keep on eBay, Poshmark, Mercari, Depop, Vinted, Whatnot, Etsy and Facebook Marketplace after fees. Editable rates, no signup.">
+<link rel="canonical" href="https://michael-muh-freakin-mercer.github.io/reseller-ledger-site/calculator.html">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231F2937'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='%23F59E0B' font-family='sans-serif' font-weight='bold'>RL</text></svg>">
+<meta property="og:title" content="Free Reseller Fee Calculator — what do you actually keep?">
+<meta property="og:description" content="Compare net payout for the same sale across 8 reselling platforms. Free, no signup.">
+<meta property="og:url" content="https://michael-muh-freakin-mercer.github.io/reseller-ledger-site/calculator.html">
+<meta property="og:image" content="https://michael-muh-freakin-mercer.github.io/reseller-ledger-site/assets/og.png">
+<script data-goatcounter="https://reseller-ledger.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<style>
+:root{--slate:#1F2937;--slate2:#374151;--amber:#F59E0B;--bg:#FAFAF9;--line:#E5E7EB;--green:#065F46}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--slate);background:var(--bg);line-height:1.6}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-bottom:1px solid var(--line)}
+.logo{font-weight:800;font-size:1.15rem;text-decoration:none;color:var(--slate)}
+.logo span{color:var(--amber)}
+.btn{display:inline-block;background:var(--amber);color:#111827;font-weight:700;padding:10px 20px;border-radius:10px;text-decoration:none;font-size:.95rem}
+h1{font-size:2rem;margin:36px 0 6px;letter-spacing:-.01em}
+.sub{color:var(--slate2);margin-bottom:24px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:20px}
+.inputs{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px}
+label{font-size:.8rem;font-weight:600;color:var(--slate2);display:block;margin-bottom:4px}
+input{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font-size:1rem}
+table{width:100%;border-collapse:collapse;font-size:.93rem}
+th{background:var(--slate);color:#fff;text-align:left;padding:9px 12px;font-size:.82rem}
+td{padding:9px 12px;border-bottom:1px solid var(--line)}
+tr.best td{background:#ECFDF5;font-weight:600}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.bar{height:8px;border-radius:4px;background:#D1FAE5;margin-top:4px}
+.bar>i{display:block;height:8px;border-radius:4px;background:var(--green)}
+details{margin-top:14px;font-size:.85rem;color:var(--slate2)}
+.editgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:10px}
+.editgrid input{padding:6px 8px;font-size:.85rem}
+.note{font-size:.82rem;color:#6B7280;margin-top:14px}
+.cta{background:var(--slate);color:#E5E7EB;border-radius:14px;padding:26px;text-align:center;margin:28px 0}
+.cta h2{color:#fff;font-size:1.4rem;margin-bottom:8px}
+.cta p{color:#9CA3AF;max-width:520px;margin:0 auto 16px;font-size:.95rem}
+footer{border-top:1px solid var(--line);padding:24px 0;color:#6B7280;font-size:.85rem;text-align:center}
+footer a{color:var(--slate2)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav>
+  <a class="logo" href="./">Reseller<span>Ledger</span></a>
+  <a class="btn buy-btn" href="GUMROAD_URL">Get the tracker — $19</a>
+</nav>
+
+<h1>Reseller fee calculator</h1>
+<p class="sub">Same item, same price — what do you actually keep on each platform? Rates are typical US defaults (Nov 2026); click “edit rates” to match your own.</p>
+
+<div class="panel">
+  <div class="inputs">
+    <div><label>Item sale price ($)</label><input id="price" type="number" min="0" step="0.01" value="35"></div>
+    <div><label>Shipping charged to buyer ($)</label><input id="shipC" type="number" min="0" step="0.01" value="0"></div>
+    <div><label>Your shipping cost ($)</label><input id="shipK" type="number" min="0" step="0.01" value="0"></div>
+    <div><label>Item cost / COGS ($)</label><input id="cogs" type="number" min="0" step="0.01" value="8"></div>
+  </div>
+</div>
+
+<div class="panel">
+  <table id="tbl">
+    <thead><tr><th>Platform</th><th class="num">Fee</th><th class="num">You keep (payout)</th><th class="num">Net profit</th><th class="num">Effective %</th></tr></thead>
+    <tbody></tbody>
+  </table>
+  <details>
+    <summary>Edit rates</summary>
+    <div class="editgrid" id="edit"></div>
+    <p class="note">Fee logic: if the order total is under the platform's threshold, the flat fee applies; otherwise order total × fee % + fixed fee. “Order total” = item price + shipping charged.</p>
+  </details>
+  <p class="note">Defaults are estimates for typical US sellers, checked November 2026 — platforms change fees often and yours may differ by category or status. Not financial advice.</p>
+</div>
+
+<div class="cta">
+  <h2>Track this automatically for every sale</h2>
+  <p>Reseller Ledger computes COGS, fees, bundles and net profit per sale across all your platforms — and rolls it into a tax-ready summary. $19 once, no subscription.</p>
+  <a class="btn buy-btn" href="GUMROAD_URL">Get Reseller Ledger — $19</a>
+</div>
+
+<footer>
+  <p><a href="./">Reseller Ledger</a> · <a href="privacy.html">Privacy</a> · <a href="refunds.html">Refunds</a> · Platform names are trademarks of their owners; no affiliation. Rates are editable estimates.</p>
+</footer>
+</div>
+<script>
+const PLATFORMS = [
+  {name:"eBay", pct:0.136, fixed:0.30, flat:0, thr:0},
+  {name:"Poshmark", pct:0.20, fixed:0, flat:2.95, thr:15},
+  {name:"Mercari", pct:0.129, fixed:0.50, flat:0, thr:0},
+  {name:"Depop", pct:0.033, fixed:0.45, flat:0, thr:0},
+  {name:"Vinted", pct:0, fixed:0, flat:0, thr:0},
+  {name:"Whatnot", pct:0.109, fixed:0.30, flat:0, thr:0},
+  {name:"Facebook Marketplace", pct:0.05, fixed:0.40, flat:0, thr:0},
+  {name:"Etsy", pct:0.095, fixed:0.45, flat:0, thr:0},
+];
+const $ = id => document.getElementById(id);
+const money = n => "$" + n.toFixed(2);
+function feeFor(p, orderTotal){
+  if (p.thr > 0 && orderTotal < p.thr) return p.flat;
+  return orderTotal * p.pct + p.fixed;
+}
+function render(){
+  const price = parseFloat($("price").value)||0, shipC = parseFloat($("shipC").value)||0;
+  const shipK = parseFloat($("shipK").value)||0, cogs = parseFloat($("cogs").value)||0;
+  const ot = price + shipC;
+  const rows = PLATFORMS.map(p => {
+    const fee = feeFor(p, ot), keep = ot - fee, net = keep - shipK - cogs;
+    const eff = ot > 0 ? fee/ot*100 : 0;
+    return {...p, fee, keep, net, eff};
+  }).sort((a,b)=>b.net-a.net);
+  const maxNet = Math.max(...rows.map(r=>r.net), 0.01);
+  $("tbl").querySelector("tbody").innerHTML = rows.map((r,i)=>`
+    <tr class="${i===0?'best':''}">
+      <td>${r.name}${i===0?' ✓ best':''}</td>
+      <td class="num">${money(r.fee)}</td>
+      <td class="num">${money(r.keep)}</td>
+      <td class="num">${money(r.net)}<div class="bar"><i style="width:${Math.max(0,r.net/maxNet*100)}%"></i></div></td>
+      <td class="num">${r.eff.toFixed(1)}%</td>
+    </tr>`).join("");
+  $("edit").innerHTML = PLATFORMS.map((p,i)=>`
+    <div><label>${p.name} — % / fixed / flat / threshold</label>
+    <input data-i="${i}" data-k="pct" type="number" step="0.001" value="${p.pct}">
+    <input data-i="${i}" data-k="fixed" type="number" step="0.01" value="${p.fixed}">
+    <input data-i="${i}" data-k="flat" type="number" step="0.01" value="${p.flat}">
+    <input data-i="${i}" data-k="thr" type="number" step="0.01" value="${p.thr}"></div>`).join("");
+  $("edit").querySelectorAll("input").forEach(inp=>inp.addEventListener("input", e=>{
+    PLATFORMS[+e.target.dataset.i][e.target.dataset.k] = parseFloat(e.target.value)||0;
+    renderTableOnly();
+  }));
+}
+function renderTableOnly(){
+  const evt = new Event("input");
+  // re-render table without rebuilding the editor (preserve focus)
+  const price = parseFloat($("price").value)||0, shipC = parseFloat($("shipC").value)||0;
+  const shipK = parseFloat($("shipK").value)||0, cogs = parseFloat($("cogs").value)||0;
+  const ot = price + shipC;
+  const rows = PLATFORMS.map(p => {
+    const fee = feeFor(p, ot), keep = ot - fee, net = keep - shipK - cogs;
+    const eff = ot > 0 ? fee/ot*100 : 0;
+    return {...p, fee, keep, net, eff};
+  }).sort((a,b)=>b.net-a.net);
+  const maxNet = Math.max(...rows.map(r=>r.net), 0.01);
+  $("tbl").querySelector("tbody").innerHTML = rows.map((r,i)=>`
+    <tr class="${i===0?'best':''}">
+      <td>${r.name}${i===0?' ✓ best':''}</td>
+      <td class="num">${money(r.fee)}</td>
+      <td class="num">${money(r.keep)}</td>
+      <td class="num">${money(r.net)}<div class="bar"><i style="width:${Math.max(0,r.net/maxNet*100)}%"></i></div></td>
+      <td class="num">${r.eff.toFixed(1)}%</td>
+    </tr>`).join("");
+}
+["price","shipC","shipK","cogs"].forEach(id=>$(id).addEventListener("input", renderTableOnly));
+render();
+document.querySelectorAll('.buy-btn').forEach(function(b){
+  b.addEventListener('click', function(){
+    if (window.goatcounter && goatcounter.count) goatcounter.count({path:'checkout-click', title:'Checkout click', event:true});
+  });
+});
+</script>
+</body>
+</html>

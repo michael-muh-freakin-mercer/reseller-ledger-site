@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reseller Ledger — Cross-Platform Inventory & Profit Tracker Spreadsheet</title>
+<meta name="description" content="One spreadsheet that tracks inventory, platform fees, bundles and true profit across eBay, Poshmark, Mercari, Depop, Vinted, Whatnot, Etsy and Facebook Marketplace. $19 once, no subscription. Works in Excel and Google Sheets.">
+<link rel="canonical" href="https://michael-muh-freakin-mercer.github.io/reseller-ledger-site/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231F2937'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='%23F59E0B' font-family='sans-serif' font-weight='bold'>RL</text></svg>">
+<meta property="og:type" content="product">
+<meta property="og:title" content="Reseller Ledger — know what you actually made on every sale">
+<meta property="og:description" content="Cross-platform inventory & profit tracker for resellers. Automatic per-platform fees, bundle splitting, inventory aging, tax-ready summary. $19 one-time.">
+<meta property="og:url" content="https://michael-muh-freakin-mercer.github.io/reseller-ledger-site/">
+<meta property="og:image" content="https://michael-muh-freakin-mercer.github.io/reseller-ledger-site/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Product","name":"Reseller Ledger — Cross-Platform Inventory & Profit Tracker","description":"Spreadsheet that tracks inventory, platform fees, bundles and true profit across eBay, Poshmark, Mercari, Depop, Vinted, Whatnot, Etsy and Facebook Marketplace.","image":"https://michael-muh-freakin-mercer.github.io/reseller-ledger-site/assets/og.png","brand":{"@type":"Brand","name":"Reseller Ledger"},"offers":{"@type":"Offer","url":"https://michael-muh-freakin-mercer.github.io/reseller-ledger-site/","priceCurrency":"USD","price":"19.00","availability":"https://schema.org/InStock"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Does it work in Google Sheets?","acceptedAnswer":{"@type":"Answer","text":"Yes. Import the .xlsx into Google Sheets (File → Import) and every formula, dropdown and chart carries over. It also opens directly in Excel and LibreOffice."}},
+{"@type":"Question","name":"Is it a subscription?","acceptedAnswer":{"@type":"Answer","text":"No. $19 once. You get the file, lifetime updates, and your data stays on your own computer — nothing is sent anywhere."}},
+{"@type":"Question","name":"What platforms does it support?","acceptedAnswer":{"@type":"Answer","text":"eBay, Poshmark, Mercari, Depop, Vinted, Whatnot, Etsy and Facebook Marketplace come pre-configured, plus three custom slots. Every fee is editable."}},
+{"@type":"Question","name":"What if it doesn't work for me?","acceptedAnswer":{"@type":"Answer","text":"30-day money-back guarantee, no questions asked. Reply to your receipt or email support."}}]}
+</script>
+<script data-goatcounter="https://reseller-ledger.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<style>
+:root{--slate:#1F2937;--slate2:#374151;--amber:#F59E0B;--cream:#FFF7E6;--bg:#FAFAF9;--line:#E5E7EB;--green:#065F46}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--slate);background:var(--bg);line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-bottom:1px solid var(--line)}
+.logo{font-weight:800;font-size:1.15rem;text-decoration:none;color:var(--slate)}
+.logo span{color:var(--amber)}
+nav .links a{margin-left:18px;color:var(--slate2);text-decoration:none;font-size:.95rem}
+.btn{display:inline-block;background:var(--amber);color:#111827;font-weight:700;padding:13px 28px;border-radius:10px;text-decoration:none;font-size:1.05rem;border:none;cursor:pointer}
+.btn:hover{filter:brightness(.94)}
+.btn.ghost{background:transparent;border:2px solid var(--line);color:var(--slate)}
+.hero{padding:64px 0 48px;text-align:center}
+.hero h1{font-size:2.6rem;line-height:1.15;letter-spacing:-.02em}
+.hero h1 em{font-style:normal;color:var(--amber)}
+.hero p.sub{font-size:1.2rem;color:var(--slate2);max-width:640px;margin:18px auto 28px}
+.hero .tiny{margin-top:14px;font-size:.85rem;color:#6B7280}
+.shot{margin:36px auto 0;border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,.08);max-width:100%;display:block}
+section{padding:56px 0}
+h2{font-size:1.9rem;letter-spacing:-.01em;text-align:center;margin-bottom:8px}
+.lede{text-align:center;color:var(--slate2);max-width:620px;margin:0 auto 36px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px}
+.card h3{font-size:1.05rem;margin-bottom:6px}
+.card p{font-size:.93rem;color:var(--slate2)}
+.card .ic{font-size:1.4rem}
+.dark{background:var(--slate);color:#E5E7EB}
+.dark h2,.dark h3{color:#fff}
+.dark .lede{color:#9CA3AF}
+.tabs{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.tab{background:#28334a;border:1px solid #3b4763;border-radius:10px;padding:14px 16px}
+.tab b{color:#fff;display:block;margin-bottom:2px}
+.tab span{font-size:.85rem;color:#9CA3AF}
+.band{background:var(--cream);border:1px solid #FDE9C0;border-radius:14px;padding:28px;text-align:center}
+.price-card{max-width:460px;margin:0 auto;background:#fff;border:2px solid var(--amber);border-radius:16px;padding:34px;text-align:center}
+.price{font-size:3.2rem;font-weight:800}
+.price small{font-size:1rem;color:#6B7280;font-weight:500}
+.price-card ul{text-align:left;margin:18px 0 24px;padding-left:20px;color:var(--slate2);font-size:.95rem}
+.price-card li{margin-bottom:6px}
+details{background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:10px;padding:14px 18px}
+summary{font-weight:600;cursor:pointer}
+details p{margin-top:8px;color:var(--slate2);font-size:.95rem}
+footer{border-top:1px solid var(--line);padding:28px 0;color:#6B7280;font-size:.88rem;text-align:center}
+footer a{color:var(--slate2)}
+.guarantee{display:inline-block;margin-top:12px;background:#ECFDF5;color:var(--green);border:1px solid #A7F3D0;padding:6px 14px;border-radius:999px;font-size:.85rem;font-weight:600}
+@media(max-width:640px){.hero h1{font-size:1.9rem}.hero{padding:40px 0 28px}section{padding:40px 0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav>
+  <a class="logo" href="./">Reseller<span>Ledger</span></a>
+  <div class="links">
+    <a href="calculator.html">Free fee calculator</a>
+    <a href="articles/ebay-vs-poshmark-vs-mercari-fees.html">Guides</a>
+    <a href="#faq">FAQ</a>
+    <a class="btn buy-btn" href="GUMROAD_URL" style="padding:9px 18px;font-size:.95rem">Buy — $19</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <h1>Know what you <em>actually made</em><br>on every sale, on every platform.</h1>
+  <p class="sub">One spreadsheet that tracks your inventory, per-platform fees, bundles and true net profit across eBay, Poshmark, Mercari, Depop, Vinted, Whatnot, Etsy and Facebook Marketplace.</p>
+  <a class="btn buy-btn" href="GUMROAD_URL">Get Reseller Ledger — $19</a>
+  <p class="tiny">One-time purchase · Works in Excel &amp; Google Sheets · No subscription · 30-day refund</p>
+  <img class="shot" src="assets/shot-dashboard.png" alt="Reseller Ledger dashboard showing net profit by platform, monthly profit chart and inventory aging" width="1005" height="489">
+</header>
+
+<section>
+  <h2>Sound familiar?</h2>
+  <p class="lede">The moment you sell on more than one platform, a plain spreadsheet falls apart.</p>
+  <div class="cards">
+    <div class="card"><div class="ic">🧮</div><h3>"What did I actually keep?"</h3><p>eBay takes ~13.6% + 30¢, Poshmark takes 20% (or $2.95 flat under $15), Vinted takes nothing. Comparing like-for-like across platforms by hand is a chore — so most resellers never do it.</p></div>
+    <div class="card"><div class="ic">📦</div><h3>Bundles quietly lose money</h3><p>Split a $45 bundle across two items wrong and your "profit" is fiction. The built-in Bundle Splitter allocates revenue by each item's solo value so every item's margin stays true.</p></div>
+    <div class="card"><div class="ic">🍝</div><h3>Spreadsheet spaghetti at tax time</h3><p>Shoebox receipts, forgotten sourcing costs, no mileage log. Reseller Ledger keeps COGS, expenses and mileage in one place and rolls them into a tax-ready summary.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>What's inside</h2>
+  <p class="lede">Nine connected tabs. You type in the white cells; the cream cells do the math.</p>
+  <img class="shot" src="assets/shot-sales.png" alt="Sales log tab: date, SKU, platform, sale price, shipping, automatic COGS, automatic platform fees, net profit and days-to-sell" width="1050" height="285" style="margin-top:0">
+  <div style="height:24px"></div>
+  <img class="shot" src="assets/shot-inventory.png" alt="Inventory tab with item costs, status, and days-held aging that flags stale stock" width="1061" height="288" style="margin-top:0">
+</section>
+
+<section class="dark" style="border-radius:18px">
+  <div class="wrap">
+  <h2>Every tab, working for you</h2>
+  <p class="lede">Built from real reseller complaints — not a generic template with a new coat of paint.</p>
+  <div class="tabs">
+    <div class="tab"><b>Sales Log</b><span>COGS, platform fees, net profit and days-to-sell computed per row.</span></div>
+    <div class="tab"><b>Fee Table</b><span>eBay, Poshmark, Mercari, Depop, Vinted, Whatnot, Etsy, FB Marketplace + 3 custom. Fully editable.</span></div>
+    <div class="tab"><b>Bundle Splitter</b><span>Divides one order across items by solo value. No more mystery margins.</span></div>
+    <div class="tab"><b>Inventory Aging</b><span>Days-held per item, flagged amber at 90 and red at 180 days.</span></div>
+    <div class="tab"><b>Dashboard</b><span>Profit by platform, rolling 12-month profit, charts, average days-to-sell.</span></div>
+    <div class="tab"><b>Expenses</b><span>Supplies, ads, tools — categorized and totaled automatically.</span></div>
+    <div class="tab"><b>Mileage Log</b><span>Thrift runs and post-office trips at the IRS rate you set.</span></div>
+    <div class="tab"><b>Tax Summary</b><span>Schedule C-style organizer to hand your accountant.</span></div>
+    <div class="tab"><b>Quick-Start PDF</b><span>Setup in five minutes, plain-English FAQ included.</span></div>
+  </div>
+  </div>
+</section>
+
+<section>
+  <div class="band">
+    <h2 style="margin-bottom:6px">Free: cross-platform fee calculator</h2>
+    <p style="color:var(--slate2);max-width:560px;margin:0 auto 16px">Not ready to buy? Compare what you'd keep on the same sale across all eight platforms — free, no signup.</p>
+    <a class="btn ghost" href="calculator.html">Open the calculator</a>
+  </div>
+</section>
+
+<section id="pricing">
+  <h2>One price. Yours forever.</h2>
+  <p class="lede">Flipwise and PalmFlow charge $10–20 <i>every month</i>. Reseller Ledger is $19, once — and your data never leaves your computer.</p>
+  <div class="price-card">
+    <div class="price">$19<small> one-time</small></div>
+    <ul>
+      <li>Reseller Ledger workbook (.xlsx — Excel, Google Sheets, LibreOffice)</li>
+      <li>Quick-Start Guide (PDF)</li>
+      <li>8 pre-configured platform fee profiles + 3 custom</li>
+      <li>Lifetime updates — re-download any time</li>
+      <li>30-day money-back guarantee</li>
+    </ul>
+    <a class="btn buy-btn" href="GUMROAD_URL" style="width:100%">Buy now — $19</a>
+    <span class="guarantee">✓ 30-day money-back guarantee</span>
+  </div>
+</section>
+
+<section id="faq">
+  <h2>FAQ</h2>
+  <p class="lede"></p>
+  <details><summary>Does it work in Google Sheets?</summary><p>Yes — import the .xlsx (File → Import in a blank sheet) and all formulas, dropdowns and charts carry over. It also opens directly in Excel and LibreOffice.</p></details>
+  <details><summary>Are the platform fees accurate?</summary><p>The defaults are typical US rates checked in November 2026 — but platforms change fees, and your rate can depend on category and seller status. The whole fee table is editable in one place, and every sale recalculates from it.</p></details>
+  <details><summary>Is my sales data sent anywhere?</summary><p>No. It's a spreadsheet file on your computer. There is no account, no sync, no tracking inside the product.</p></details>
+  <details><summary>I sell outside the US — does it work?</summary><p>The math works in any currency — treat the $ as yours. Update the fee table with your local rates (they're US defaults) and it's good.</p></details>
+  <details><summary>What if I sell something as a bundle or a lot?</summary><p>The Bundle Splitter tab divides the order total across items proportional to their solo value, so per-item profit stays accurate. Enter one Sales row per item with the allocated amounts.</p></details>
+  <details><summary>What's the refund policy?</summary><p>30 days, no questions asked. Reply to your Gumroad receipt or email <a href="mailto:notmichaelmercer@gmail.com">notmichaelmercer@gmail.com</a>.</p></details>
+</section>
+
+<footer>
+  <p><b>Reseller Ledger</b> · Support: <a href="mailto:notmichaelmercer@gmail.com">notmichaelmercer@gmail.com</a></p>
+  <p><a href="privacy.html">Privacy</a> · <a href="refunds.html">Refund policy</a> · <a href="calculator.html">Free fee calculator</a></p>
+  <p style="margin-top:8px">Platform names are trademarks of their owners; this independent product is not affiliated with or endorsed by them. Fee figures are editable estimates, not financial or tax advice.</p>
+</footer>
+</div>
+<script>
+document.querySelectorAll('.buy-btn').forEach(function(b){
+  b.addEventListener('click', function(){
+    if (window.goatcounter && goatcounter.count) {
+      goatcounter.count({path: 'checkout-click', title: 'Checkout click', event: true});
+    }
+  });
+});
+</script>
+</body>
+</html>

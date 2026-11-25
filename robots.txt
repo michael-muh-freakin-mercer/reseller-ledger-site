@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://michael-muh-freakin-mercer.github.io/reseller-ledger-site/sitemap.xml
